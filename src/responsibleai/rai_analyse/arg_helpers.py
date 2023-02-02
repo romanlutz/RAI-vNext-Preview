@@ -6,6 +6,8 @@ import logging
 
 from typing import Any, Dict, List, Union
 
+from rai_component_utilities import UserConfigError
+
 _logger = logging.getLogger(__file__)
 logging.basicConfig(level=logging.INFO)
 
@@ -20,7 +22,11 @@ def get_from_args(args, arg_name: str, custom_parser, allow_none: bool) -> Any:
 
     if custom_parser:
         if extracted is not None:
-            result = custom_parser(extracted)
+            try:
+                result = custom_parser(extracted)
+            except ValueError as e:
+                raise UserConfigError(f"Unable to parse {arg_name} from {args}. Please check that {extracted} is valid input."
+                "For example, a json string with unquoted string value or key can cause this error.")
     else:
         result = extracted
 
