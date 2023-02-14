@@ -25,9 +25,10 @@ RUN pip install 'responsibleai~=0.24.1' \
                 'kaleido==0.2.1' \
                 'protobuf<4' \
                 'numpy<1.24.0' \
-                'mltable' \
-                'azureml_dataprep' \
-                'azureml_dataprep_rslex'
+                'mltable==1.0.0' \
+                'tensorflow'
+                'torch'
+
 
 RUN pip install --pre azure-ai-ml
 
