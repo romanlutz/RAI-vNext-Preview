@@ -23,6 +23,10 @@ from azureml.core import Model, Run, Workspace
 from responsibleai import RAIInsights, __version__ as responsibleai_version
 from responsibleai.feature_metadata import FeatureMetadata
 
+from arg_helpers import get_from_args
+
+from typing import Any
+
 from constants import DashboardInfo, PropertyKeyValues, RAIToolType
 
 assetid_re = re.compile(
@@ -421,3 +425,28 @@ def default_object_hook(dict):
         del dict[data_type]
         return FeatureMetadata(**dict)
     return dict
+
+
+def get_categorical_column_names(args):
+    try:
+        cat_names = get_from_args(
+            args, "categorical_column_names", custom_parser=json.loads, allow_none=True
+        )
+    except 
+
+def get_classes_names(args):
+    get_from_args(
+        args, "classes", custom_parser=json_empty_is_none_parser, allow_none=True
+    )
+
+def get_feature_metadata(args):
+    get_from_args(
+        args, "feature_metadata", custom_parser=json.loads, allow_none=True
+    )
+
+def get_from_args(args, arg_name: str, custom_parser, allow_none: bool) -> Any:
+    try:
+        return get_from_args(args, arg_name, custom_parser, allow_none)
+    except ValueError as e:
+        raise UserConfigError(f"Unable to parse {arg_name} from {args}. Please check that {extracted} is valid input and that {arg_name} exists."
+        "For example, a json string with unquoted string value or key can cause this error.")

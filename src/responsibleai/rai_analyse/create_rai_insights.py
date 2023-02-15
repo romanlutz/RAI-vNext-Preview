@@ -13,7 +13,7 @@ from responsibleai import RAIInsights
 from responsibleai.feature_metadata import FeatureMetadata
 
 from constants import DashboardInfo
-from arg_helpers import boolean_parser, get_from_args, json_empty_is_none_parser
+from arg_helpers import boolean_parser, json_empty_is_none_parser
 from rai_component_utilities import (
     load_dataset,
     default_json_handler,
@@ -22,6 +22,7 @@ from rai_component_utilities import (
     get_train_dataset_id,
     get_test_dataset_id,
     UserConfigError,
+    get_from_args
 )
 
 from _telemetry._loggerfactory import _LoggerFactory, track
